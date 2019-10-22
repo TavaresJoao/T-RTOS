@@ -12,7 +12,11 @@ typedef struck tcb_t_{
 }tcb_t;
 
 extern tcb_t tcb[MAX_TASK];
+
+/* installed tasks */
 extern unsigned int it;
+
+/* current task */
 extern unsigend int ct;
 
 void InstallTask(task_t task, cpu_t *stk, unsigned int stk_size);

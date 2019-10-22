@@ -1,8 +1,8 @@
 #include "os.h"
 
 tcb_t tcb[MAX_TASKS];
-unsigned int it = 0; //installed tasks
-unsigend int ct = 0; // current task
+unsigned int it = 0;
+unsigend int ct = 0;
 
 /*
 Só está escrevendo uma tarefa, agora tenho que escrever no final
@@ -30,6 +30,5 @@ void InstallTask(task_t task, cpu_t *stk, unsigned int stk_size){
 
 void InstallTask(task_t task, cpu_t *stk, unsigned int stk_size){
   stk = stk + (cpu_t)stk_size - sizeof(cpu_t);
-  stk_tmp = stk;
-  tcb[it++] = PrepareTask(task, stk);
+  tcb[it++].stk = PrepareTask(task, stk);
 }

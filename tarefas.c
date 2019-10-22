@@ -1,21 +1,21 @@
 #include "tarefas.h"
 
 void task1(void){
-  static int i = 1;
+  int i = 1;
 
-  while(1){
+  while(i<10){
     i++;
-
-    yield();
   }
+
+  yield();
 }
 
 void task2(void){
-  static int j = 0;
+  int j = 1;
 
-  while(1){
-    j -= 1;
-
-    yield();
+  while(j<10){
+    j++;
   }
+
+  yield();
 }

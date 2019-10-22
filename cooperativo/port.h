@@ -66,4 +66,11 @@ extern cpu_t *stk_tmp;
 */
 cpu_t *PrepareTask(void* task, cpu_t* stk);
 
+/*
+  - software interrupt
+
+  -- função que será executada quando houover uma SWI
+*/
+interrupt void SWI(void);
+
 #endif
