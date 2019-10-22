@@ -1,6 +1,7 @@
 #include "port.h"
+//#include "os.h"
 
-//cpu_t *stk_tmp;
+cpu_t *stk_tmp;
 
 cpu_t *PrepareTask(void* task, cpu_t* stk)
 {

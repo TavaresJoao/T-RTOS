@@ -58,4 +58,13 @@ cpu_t *PrepareTask(void* task, cpu_t* stk);
 */
 interrupt void SWI(void);
 
+/*
+  - Variável para trabalhar com o stack pointer
+
+  -- é um pointeito que contem o valor do stack pointer e é usado para armezar
+  o SP na memória, ou carregar dela para o SP.
+*/
+extern cpu_t *stk_tmp;
+
+
 #endif
