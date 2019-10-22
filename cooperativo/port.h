@@ -4,13 +4,10 @@
 /*
   - Despachar uma tarefa
 
-  - asm("LDHX stk_tmp") carrega o conteúdo da variável stk_tmp para o
-  registrador de indexes (H:X)
-  - asm("TXS") transfer index register to stack pointer: carrega SP com o
-  conteúdo do registrador (H:X) - 1
-  - asm("PULH") pull H from stack: desempilha e carrega o conteúdo no
-  registrador H
-  - asm("RTI") return from interrupt: pull (CCR), pull (A), pull (X),
+  -- asm("LDHX stk_tmp") load index register from memory: (H:X) <- (M:M + 1)
+  -- asm("TXS") transfer index register to stack pointer: SP <- (H:X) - 1
+  -- asm("PULH") pull H from stack: SP <- (SP + 1); pull(H)
+  -- asm("RTI") return from interrupt: pull (CCR), pull (A), pull (X),
   pull (PCH), pull (PCL)
 */
 #define dispatcher()\
@@ -19,20 +16,54 @@
   asm("PULH");\
   asm("RTI")
 
+/*
+  - Desistir do processador
+
+  -- asm("SWI") software interrupt
+*/
 #define yield() asm("SWI")
 
+/*
+  - Salvar o stack pointer
+
+  -- asm("TSX") transfer stack pointer to index register: (H:X) <- SP + 1
+  -- asm("STHX stk_tmp") store index register: (M:M + 1) <- (H:X)
+*/
 #define SAVE_SP()\
   asm("TSX");\
   asm("STHX stk_tmp")
 
+/*
+  - Carregar o stack pointer
+
+  -- asm("LDHX stk_tmp") load index register from memory: (H:X) <- (M:M + 1)
+  -- asm("TXS") transfer index register to stack pointer: SP <- (H:X) - 1
+*/
 #define RESTORE_SP()\
   asm("LDHX stk_tmp");\
   asm("TXS")
 
+/*
+  - Tipo de dado trabalhado pela cpu
+
+  -- como o processador é de 8 bits foi escolhido o unsigned char
+*/
 typedef unsigned char cpu_t;
 
+/*
+  - Variável para trabalhar com o stack pointer
+
+  -- é um pointeito que contem o valor do stack pointer e é usado para armezar
+  o SP na memória, ou carregar dela para o SP.
+*/
 extern cpu_t *stk_tmp;
 
+/*
+  - Preparar Tarefa
+
+  -- é uma função que empilha os valores do PCL, PCH, X, A, CCR e (H:X)
+  predefinidos
+*/
 cpu_t *PrepareTask(void* task, cpu_t* stk);
 
 #endif
