@@ -1,8 +1,8 @@
 #include "os.h"
 
-tcb_t tcb[MAX_TASKS];
+tcb_t tcb[MAX_TASK];
 unsigned int it = 0;
-unsigend int ct = 0;
+unsigned int ct = 0;
 
 /*
 Só está escrevendo uma tarefa, agora tenho que escrever no final

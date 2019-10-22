@@ -1,8 +1,9 @@
 #include "port.h"
 
-cpu_t *stk_tmp;
+//cpu_t *stk_tmp;
 
-cpu_t *PrepareTask(void* task, cpu_t* stk){
+cpu_t *PrepareTask(void* task, cpu_t* stk)
+{
   *stk-- = (cpu_t)task;           // PCL
   *stk-- = (cpu_t)((int)task>>8); // PCH
   *stk-- = 0;                     // X
@@ -13,10 +14,11 @@ cpu_t *PrepareTask(void* task, cpu_t* stk){
   return stk;
 }
 
-interrupt void SWI(void){
+interrupt void SWI(void)
+{
   SAVE_SP();
   tcb[ct++].stk = stk_tmp;
-  if(ct > it)
+  if(ct >= it)
     ct = 0;
 
   stk_tmp = tcb[ct].stk;

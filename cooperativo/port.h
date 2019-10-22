@@ -44,21 +44,6 @@
   asm("TXS")
 
 /*
-  - Tipo de dado trabalhado pela cpu
-
-  -- como o processador é de 8 bits foi escolhido o unsigned char
-*/
-typedef unsigned char cpu_t;
-
-/*
-  - Variável para trabalhar com o stack pointer
-
-  -- é um pointeito que contem o valor do stack pointer e é usado para armezar
-  o SP na memória, ou carregar dela para o SP.
-*/
-extern cpu_t *stk_tmp;
-
-/*
   - Preparar Tarefa
 
   -- é uma função que empilha os valores do PCL, PCH, X, A, CCR e (H:X)
