@@ -2,5 +2,6 @@
 #define _TAREFAS_H_
 
 void task1(void);
+void task2(void);
 
 #endif

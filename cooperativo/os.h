@@ -3,7 +3,7 @@
 
 #include "port.h"
 
-#define MAX_TASKS 10
+#define MAX_TASK 10
 
 typedef void (*task_t)(void);
 
@@ -11,7 +11,7 @@ typedef struck tcb_t_{
   cpu_t *stk;
 }tcb_t;
 
-extern tcb_t tcb[MAX_TASKS];
+extern tcb_t tcb[MAX_TASK];
 extern unsigned int it;
 extern unsigend int ct;
 
