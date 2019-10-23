@@ -5,7 +5,7 @@ void task1(void){
 
   while(1){
     i++;
-    
+
     yield();
   }
 }
@@ -15,7 +15,17 @@ void task2(void){
 
   while(1){
     j++;
-    
+
+    yield();
+  }
+}
+
+void task3(void){
+  int k = 0;
+
+  while(1){
+    k++;
+
     yield();
   }
 }
