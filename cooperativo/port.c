@@ -1,5 +1,4 @@
-#include "port.h"
-//#include "os.h"
+#include "os.h"
 
 cpu_t *stk_tmp;
 
@@ -18,6 +17,7 @@ cpu_t *PrepareTask(void* task, cpu_t* stk)
 interrupt void SWI(void)
 {
   SAVE_SP();
+
   tcb[ct++].stk = stk_tmp;
   if(ct >= it)
     ct = 0;

@@ -16,7 +16,7 @@ struct tcb_t_
 typedef struct tcb_t_ tcb_t;
 
 /* tcb */
-extern tcb_t tcb[MAX_TASK];
+extern volatile tcb_t tcb[MAX_TASK];
 
 /* installed tasks */
 extern unsigned int it;

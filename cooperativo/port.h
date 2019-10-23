@@ -1,6 +1,8 @@
 #ifndef _PORT_H_
 #define _PORT_H_
 
+//#include "os.h"
+
 /*
   - Despachar uma tarefa
 
@@ -40,8 +42,8 @@
   -- asm("TXS") transfer index register to stack pointer: SP <- (H:X) - 1
 */
 #define RESTORE_SP()\
-  asm("LDHX stk_tmp");\
-  asm("TXS")
+  	asm("LDHX stk_tmp");\
+    asm("TXS")
 
 /*
   - Preparar Tarefa

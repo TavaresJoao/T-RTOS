@@ -1,6 +1,6 @@
 #include "os.h"
 
-tcb_t tcb[MAX_TASK];
+volatile tcb_t tcb[MAX_TASK];
 unsigned int it = 0;
 unsigned int ct = 0;
 
@@ -30,5 +30,8 @@ void InstallTask(task_t task, cpu_t *stk, unsigned int stk_size){
 
 void InstallTask(task_t task, cpu_t *stk, unsigned int stk_size){
   stk = stk + (cpu_t)stk_size - sizeof(cpu_t);
-  tcb[it++].stk = PrepareTask(task, stk);
+
+  stk = PrepareTask(task, stk);
+
+  tcb[it++].stk = stk;
 }
